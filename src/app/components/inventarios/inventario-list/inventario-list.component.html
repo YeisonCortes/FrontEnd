@@ -1,0 +1,30 @@
+<div class="table-responsive" >
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm row-border hover" >
+        <thead>
+            <tr>
+                <th><strong>Cod</strong></th>
+                <th><strong>Bodega</strong></th>
+                <th><strong>Producto</strong></th>
+                <th><strong>Estado</strong></th>
+                <th><strong>Stock</strong></th>
+                <th><strong>Editar</strong></th>
+                <th><strong>Eliminar</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inventario of list">
+                <td>{{inventario.inCod}}</td>
+                <td>{{inventario.bodega?.boNombre}}</td>
+                <td>{{inventario.inNombre}}</td>
+                <td>{{inventario.estado?.esDescripcion}}</td>
+                <td>{{inventario.inStock}}</td>
+                <td>
+                    <i class="far fa-edit fa-lg text-warning" (click)="editar(inventario)" style="cursor: pointer;"></i>
+                </td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="eliminarInventario(inventario.inCod!)" style="cursor: pointer;"></i>
+                </td>        
+            </tr>
+        </tbody>
+    </table>    
+</div>

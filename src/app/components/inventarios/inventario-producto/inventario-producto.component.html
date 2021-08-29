@@ -1,0 +1,57 @@
+<form [formGroup]="form" (ngSubmit)="guardarProducto()" >
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fab fa-product-hunt" [class.green-icon]="this.form.get('nombre')?.valid"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" placeholder="Producto" formControlName="nombre" minlength="3" maxlength="50">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fas fa-store"></i>
+                </div>
+            </div>
+            <select class="browser-default custom-select" formControlName="bodega">
+                <option value="0">--Seleccionar Bodega--</option>
+                <option value="1">BODEGA SUR</option>
+                <option value="2">BODEGA CENTRO</option>
+                <option value="3">BODEGA NORTE</option>
+            </select>            
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fas fa-plus-square"></i>
+                </div>
+            </div>
+            <select class="browser-default custom-select" formControlName="estado">
+                <option value="0">--Seleccionar Estado--</option>
+                <option value="1">ÓPTIMO</option>
+                <option value="2">DEFECTUOSO</option>
+            </select>            
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fas fa-sort-amount-up" [class.green-icon]="this.form.get('stock')?.valid"></i>
+                </div>
+            </div>
+            <input type="number" class="form-control" placeholder="Stock" name="" id="" formControlName="stock">
+        </div>
+    </div> 
+    <div class="form-group">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-success btn-lg btn-block">
+            <i class="fas fa-database"></i>
+            Guardar
+        </button>
+    </div>        
+</form>
