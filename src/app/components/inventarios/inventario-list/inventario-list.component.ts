@@ -51,7 +51,7 @@ export class InventarioListComponent implements OnDestroy, OnInit {
   }
 
   inicio(){
-    this.http.get(this.myAppUrl+this.myApiUrl).toPromise()
+    this.http.get(this.myAppUrl+this.myApiUrl+"ruta1").toPromise()
               .then(data => {
                 this.list = data as Inventario[];
                 this.dtTrigger.next();

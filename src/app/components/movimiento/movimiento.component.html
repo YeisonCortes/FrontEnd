@@ -1,1 +1,80 @@
-<p>movimiento works!</p>
+<form [formGroup]="form" (ngSubmit)="guardarMovimiento()" class="row gy-2 gx-3 align-items-center">
+    <div class="col-auto">
+        <div class="input-group">
+            <label class="visually-hidden" for="ddlProducto">Producto</label>
+
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fab fa-product-hunt"></i>
+                </div>
+            </div>     
+            <select class="form-select" id="ddlProducto" formControlName="codproducto">
+              <option value="0">Productos...</option>
+              <option  *ngFor="let product of productos" value="{{product.inCod}}">{{product.inNombre}}</option>
+            </select>           
+        </div>       
+    </div>
+
+    <div class="col-auto">
+        <div class="input-group">
+            <label class="visually-hidden" for="ddlClase">Clase Movimiento</label>
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fas fa-dolly-flatbed"></i>
+                </div>
+            </div>            
+            <select class="form-select" id="ddlClase" formControlName="codclase">
+            <option value="0">Clase Movimiento...</option>
+            <option value="1">ENTRADA</option>
+            <option value="2">SALIDA</option>
+            <option value="3">TRASLADO</option>
+            </select>
+        </div>
+    </div>    
+    
+    <div class="col-auto">
+        <div class="input-group">
+            <label class="visually-hidden" for="autoSizingInput" >Cantidad</label>
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fas fa-sort-amount-up"></i>
+                </div>
+            </div>            
+            <input type="text" class="form-control" id="autoSizingInput" formControlName="cantidad" placeholder="Cantidad">
+        </div>
+    </div>
+
+    <div class="col-auto">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+            <i class="fas fa-save"></i>  
+            Aceptar
+        </button>
+    </div>
+  </form>
+
+  <br><br>
+  <!-- Mostrar Movimieintos -->
+  <div class="row">
+    <div class="table-responsive" >
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-sm row-border hover" >
+            <thead>
+                <tr>
+                    <th><strong>Cod</strong></th>
+                    <th><strong>Producto</strong></th>
+                    <th><strong>Clase Movimiento</strong></th>
+                    <th><strong>Cantidad</strong></th>
+                    <th><strong>Fecha</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let movimiento of list">
+                    <td>{{movimiento.moCod}}</td>
+                    <td>{{movimiento.producto?.inNombre}}</td>
+                    <td>{{movimiento.clase?.cmDescripcion}}</td>
+                    <td>{{movimiento.moCantidad}}</td>
+                    <td>{{movimiento.moFecha | date:'yyyy-MM-dd'}}</td>        
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+  </div>
